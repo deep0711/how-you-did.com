@@ -1,11 +1,12 @@
 import React from 'react';
-import Logged from './Logged-in.js';
-import Notlogged from './not-logged-in.js';
-import Login from './login';
+import Logged from './components/Logged-in.js';
+import Notlogged from './components/not-logged-in.js';
+import Login from './components/login';
 import {BrowserRouter,Route,Switch} from 'react-router-dom'
 import decode from 'jwt-decode';
 import axios from 'axios';
-
+import Signup from './components/signup';
+import Grid from '@material-ui/core/Grid';
 
 class App extends React.Component{
     
@@ -31,7 +32,6 @@ class App extends React.Component{
             username:null
         })
     }
-
     //Run on mounting.Check wether user is logged in or not
     componentDidMount(){
 
@@ -82,6 +82,8 @@ class App extends React.Component{
                     <div className="Home-Content">
                         <Notlogged/>
                         <Route path='/login' render={ (props)=>< Login {...props} changestate={this.changestate} /> } />
+                        <Route path='/create' component={ Signup}/>
+                        
                     </div>
                 </BrowserRouter>
             )
