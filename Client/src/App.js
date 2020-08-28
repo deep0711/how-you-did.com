@@ -1,11 +1,11 @@
 import React from 'react';
-import Logged from './Logged-in.js';
-import Notlogged from './not-logged-in.js';
-import Login from './login';
+//import Logged from './components/Logged-in.js';
+import Notlogged from './components/not-logged-in.js';
+import Login from './components/login';
 import {BrowserRouter,Route,Switch} from 'react-router-dom'
 import decode from 'jwt-decode';
 import axios from 'axios';
-
+import Signup from './components/signup';
 
 class App extends React.Component{
     
@@ -31,7 +31,6 @@ class App extends React.Component{
             username:null
         })
     }
-
     //Run on mounting.Check wether user is logged in or not
     componentDidMount(){
 
@@ -80,8 +79,10 @@ class App extends React.Component{
             return(
                 <BrowserRouter>
                     <div className="Home-Content">
-                        <Notlogged/>
+                        <Route exact path="/" component={ Notlogged }/>
                         <Route path='/login' render={ (props)=>< Login {...props} changestate={this.changestate} /> } />
+                        <Route path='/create' component={ Signup}/>
+                        
                     </div>
                 </BrowserRouter>
             )
@@ -91,7 +92,8 @@ class App extends React.Component{
             return(
                 <BrowserRouter>
                     <div className="Home-Content">
-                        <Logged username={this.state.username} logout={this.logout} />
+                       {// <Logged username={this.state.username} logout={this.logout} />
+        }
                     </div>
                 </BrowserRouter>
             )
