@@ -1,6 +1,4 @@
 import React from 'react';
-import LockIcon from '@material-ui/icons/Lock';
-import PersonIcon from '@material-ui/icons/Person';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 
@@ -38,31 +36,34 @@ class Login extends React.Component{
     render(){
         return(
             
-                <div className="container">
-                    <h3>Log in</h3>
-                
-                    <form className="col s12" onSubmit={this.handlesubmit}>
-                        <div className="row">
-                            <div className="input-field col s6">
-                                <i><PersonIcon/></i>
-                                <input id="username" type="text" placeholder="Username"></input>
-                                
+                <div 
+                className="container"
+                style={ { height: "100%" } }>
+
+                    <div 
+                    className="d-flex justify-content-center align-items-center"
+                    style={  {width: "100%" , height: "100%" }}>
+                        
+                        <div class="card" style={ { width: "26rem" }}>
+                            <div class="card-header">
+                                <center>Login</center>
                             </div>
-                        </div>    
-                        <div className="row">    
-                            <div className="input-field col s6">
-                                <i><LockIcon/></i>
-                                <input id="password" type="password" placeholder="Password"></input>
+                            <div class="card-body">
+                                <form onSubmit={ this.handlesubmit }>
+                                    <div class="form-group">
+                                        <label for="username">User Name</label>
+                                        <input type="text" class="form-control" id="username" required/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" id="password" required/>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-block ml-auto mb-4">Submit</button>
+                                </form>
+                                <Link to="/create" className="card-link mt-5"><center>New Here ?</center></Link>
                             </div>
                         </div>
-                        <button>Submit</button>
-                    </form>
-                    <br></br>
-                    <Link to='/create'>
-                    <button>
-                        <h6>New to us...</h6>
-                    </button>
-                    </Link>
+                        </div>
                 </div>
                 
             )

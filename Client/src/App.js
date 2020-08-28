@@ -1,12 +1,12 @@
 import React from 'react';
-import Logged from './components/Logged-in.js';
 import Notlogged from './components/not-logged-in.js';
+import Loggedin from './components/Logged-in';
 import Login from './components/login';
-import {BrowserRouter,Route,Switch} from 'react-router-dom'
-import decode from 'jwt-decode';
+import {BrowserRouter,Route} from 'react-router-dom'
 import axios from 'axios';
 import Signup from './components/signup';
-import Grid from '@material-ui/core/Grid';
+import NavBar from './components/NavBar_home';
+import NavBarlogged from './components/NavBar_Loggedin';
 
 class App extends React.Component{
     
@@ -26,6 +26,7 @@ class App extends React.Component{
     //When user will logout,change state
     logout=()=>{
         localStorage.removeItem('cool-jwt');
+
         
         this.setState({
             status:"Not_Logged_In",
@@ -70,9 +71,11 @@ class App extends React.Component{
         if(!this.state.status)
         {
             return(
+                <BrowserRouter>
                 <div>
                     <h3>Loading....</h3>
                 </div>
+                </BrowserRouter>
             )
         }
         else if(this.state.status==="Not_Logged_In")
@@ -80,7 +83,8 @@ class App extends React.Component{
             return(
                 <BrowserRouter>
                     <div className="Home-Content">
-                        <Notlogged/>
+                        <Route path='/' component={NavBar}/>
+                        <Route exact path="/" component={ Notlogged }/>
                         <Route path='/login' render={ (props)=>< Login {...props} changestate={this.changestate} /> } />
                         <Route path='/create' component={ Signup}/>
                         
@@ -93,7 +97,8 @@ class App extends React.Component{
             return(
                 <BrowserRouter>
                     <div className="Home-Content">
-                        <Logged username={this.state.username} logout={this.logout} />
+                        <Route path='/' render={ (props)=>< NavBarlogged {...props} username={this.state.username} logout={this.logout} />}/>
+                        <Route path="/" component={ Loggedin }/>
                     </div>
                 </BrowserRouter>
             )
