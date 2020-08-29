@@ -3,6 +3,7 @@ const connection=require('../connection');
 var user=function(user){
     this.username=user.username;
     this.email=user.email;
+    this.dob=user.dob;
     this.password=user.password;
 };
 
