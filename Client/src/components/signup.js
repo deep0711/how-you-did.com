@@ -16,10 +16,17 @@ const Signup=(props)=>{
 
         axios.post(url,data)
             .then(res=>{
-                alert('User Added Successfully');
-                props.history.push('/login');
+                console.log(res);
+                if(res.data!=0)
+                {
+                    alert('User Already there.Try Again with different username');    
+                }
+                else{
+                    alert('User Added Successfully');
+                    props.history.push('/login');
+                }
             }).catch(e=>{
-                console.log('Error',e);
+                alert('Unexpected Error occured.Try Again :(');
             })
     }
 
@@ -68,33 +75,3 @@ export default Signup;
 
 
 
-/*
-
-<div className="container">
-                <h3>Sign-Up</h3>
-                
-                    <form className="col s12" onSubmit={handlesubmit}>
-                        <div className="row">
-                            <div className="input-field col s6">
-                                <i><PersonIcon/></i>
-                                <input id="username" type="text" placeholder="Username"></input>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="input-field col s6">
-                                <i><AlternateEmailIcon/></i>
-                                <input id="Email" type="email" placeholder="Email"></input>
-                            </div>
-                        </div> 
-                        <div className="row">    
-                            <div className="input-field col s6">
-                                <i><LockIcon/></i>
-                                <input id="password" type="password" placeholder="Password"></input>
-                            </div>
-                        </div>
-                        <button>Submit</button>
-                    </form>
-            </div>
-            
-
-*/

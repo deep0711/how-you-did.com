@@ -2,16 +2,10 @@ import React, { Fragment, useState, useEffect } from 'react';
 
 import {Link} from 'react-router-dom';
 
-const tagsX = ["#demo1" , "#demo1" , "#demo1" , "#demo1" , "#demo1" , "#demo1" , "#demo1" , "#demo1" , "#demo1" , "#demo1" , "#demo1" ];
 
 const Home=()=>{
     
-    const [tags, setTags] = useState('');
-
-    useEffect(()=>{
-        setTags(tagsX);
-    },[]);
-
+    
     return(
         <div 
         className="container"
@@ -33,9 +27,6 @@ const Home=()=>{
                 <br></br>
                 
                 <br></br>
-                
-                {//<h3 style={{ fontSize: "2rem" }}>Want to learn today so you can share your success tommorrow</h3>
-                }
                 
                 <br></br>
                 <Link to="/login" style={ {textTransform:"lowercase"} }>

@@ -58,7 +58,7 @@ class Login extends React.Component{
                                         <label for="password">Password</label>
                                         <input type="password" class="form-control" id="password" required/>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-block ml-auto mb-4">Submit</button>
+                                    <button type="submit" class="btn btn-primary btn-block ml-auto mb-4">Login</button>
                                 </form>
                                 <Link to="/create" className="card-link mt-5"><center>New Here ?</center></Link>
                             </div>

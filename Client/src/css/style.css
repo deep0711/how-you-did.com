@@ -1,0 +1,22 @@
+div.deepak {
+    
+    overflow: auto;
+    white-space: nowrap;
+  }
+  
+  div.deepak {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding-left: 68%;
+    text-decoration: none;
+  }
+  
+div.deepak::-webkit-scrollbar { 
+    display: none;  
+ }
+
+ div.deepak {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+}

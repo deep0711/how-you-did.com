@@ -7,6 +7,7 @@ import axios from 'axios';
 import Signup from './components/signup';
 import NavBar from './components/NavBar_home';
 import NavBarlogged from './components/NavBar_Loggedin';
+import Profile from './components/userProfile';
 
 class App extends React.Component{
     
@@ -98,7 +99,8 @@ class App extends React.Component{
                 <BrowserRouter>
                     <div className="Home-Content">
                         <Route path='/' render={ (props)=>< NavBarlogged {...props} username={this.state.username} logout={this.logout} />}/>
-                        <Route path="/" component={ Loggedin }/>
+                        <Route exact path="/" component={ Loggedin }/>
+                        <Route path='/profile' render={ (props)=>< Profile {...props} username={this.state.username}/>}/>
                     </div>
                 </BrowserRouter>
             )
