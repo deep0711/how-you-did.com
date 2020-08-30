@@ -22,7 +22,7 @@ const NavBar = (props) => {
     }
 
     return (
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div className="container">
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#raiNavbar" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
@@ -31,14 +31,15 @@ const NavBar = (props) => {
 
             <div className="collapse navbar-collapse" id="raiNavbar">
                 <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
+                
                 <li className="nav-item">
-                    <a className="nav-link" href="#" >Home<span class="sr-only">(current)</span></a>
+                    <a className="nav-link"><Link to='/'>Home</Link><span className="sr-only">(current)</span></a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="#" >Write<span class="sr-only">(current)</span></a>
+                    <a className="nav-link"><Link to='/create'>Write</Link><span className="sr-only">(current)</span></a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="#" onClick={handleClick}>{props.username}<span class="sr-only">(current)</span></a>
+                    <a className="nav-link" href="#" onClick={handleClick}>{props.username}<span className="sr-only">(current)</span></a>
                     
                     <Menu id="fade-menu" anchorEl={anchorEl} keepMounted open={open} onClose={handleClose} TransitionComponent={Fade}>
                         <MenuItem onClick={handleprofile}>Profile</MenuItem>
