@@ -36,7 +36,7 @@ const Signup=(props)=>{
 
         <div 
                 className="container"
-                style={ { height: "100%" } }>
+                style={ { height: "100%" ,marginTop:"-80px"} }>
 
                     <div 
                     className="d-flex justify-content-center align-items-center"
