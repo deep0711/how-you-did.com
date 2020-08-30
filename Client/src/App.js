@@ -5,34 +5,36 @@ import Login from './components/login';
 import {BrowserRouter,Route} from 'react-router-dom'
 import axios from 'axios';
 import Signup from './components/signup';
-import NavBar from './components/NavBar_home';
-import NavBarlogged from './components/NavBar_Loggedin';
+import NavBar from './components/Navbar';
 import Profile from './components/userProfile';
+import Post from './components/post'
+import Tag from './components/tag'
 
 class App extends React.Component{
     
     state={
         status:null,
-        username:null
+        username:null,
+        email:null
     }
     
     //When user is currently not login,in future if logged in,then change state by this function
-    changestate=(user)=>{
+    changestate=(user,e)=>{
         this.setState({
             status:"Logged In",
-            username:user
+            username:user,
+            email:e
         })
     }
 
     //When user will logout,change state
     logout=()=>{
         localStorage.removeItem('cool-jwt');
-
-        
         this.setState({
             status:"Not_Logged_In",
             username:null
         })
+        
     }
     //Run on mounting.Check wether user is logged in or not
     componentDidMount(){
@@ -52,9 +54,11 @@ class App extends React.Component{
 
             axios.get(url,{ headers: {authorization: 'Bearer '+ token}})
                 .then(res=>{
+                    console.log(res.data);
                     this.setState({
                         status:"Logged_In",
-                        username:res.data
+                        username:res.data.id,
+                        email:res.data.email
                     })
                     
                 }).catch(e=>{
@@ -68,7 +72,6 @@ class App extends React.Component{
     }
     
     render(){
-        
         if(!this.state.status)
         {
             return(
@@ -84,7 +87,7 @@ class App extends React.Component{
             return(
                 <BrowserRouter>
                     <div className="Home-Content">
-                        <Route path='/' component={NavBar}/>
+                        <Route path='/' render={ (props)=>< NavBar {...props} username={this.state.username} logout={this.logout} />}/>
                         <Route exact path="/" component={ Notlogged }/>
                         <Route path='/login' render={ (props)=>< Login {...props} changestate={this.changestate} /> } />
                         <Route path='/create' component={ Signup}/>
@@ -98,9 +101,13 @@ class App extends React.Component{
             return(
                 <BrowserRouter>
                     <div className="Home-Content">
-                        <Route path='/' render={ (props)=>< NavBarlogged {...props} username={this.state.username} logout={this.logout} />}/>
+                        <Route path='/' render={ (props)=>< NavBar {...props} username={this.state.username} logout={this.logout} />}/>
                         <Route exact path="/" component={ Loggedin }/>
-                        <Route path='/profile' render={ (props)=>< Profile {...props} username={this.state.username}/>}/>
+                        <Route path='/profile' render={ (props)=>< Profile {...props} state={this.state}/>}/>
+                        <Route path='/post/:post_id' component={Post}/>
+                        <Route path='/tags/:tag_id' component={Tag}/>
+                        {//<Route path='/editprofile' component={EditProfile}/>
+                        }
                     </div>
                 </BrowserRouter>
             )

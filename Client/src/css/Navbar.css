@@ -1,23 +1,27 @@
+
 .navbar {
-    background-color: #060b26;
+    background-color:white;
     height: 80px;
     display: flex;
     width: 100%;
     justify-content: start;
-    align-items: center;
+    text-align: left;
   }
   .menu-bars {
     margin-left: 2rem;
     font-size: 2rem;
     background: none;
   }
+
   .profile-img {
     width: 200px;
     height : 200px;
     border-radius: 100px;
     margin: 10px;
   }
+
   .nav-menu {
+    z-index:1;
     background-color: #060b26;
     width: 250px;
     height: 100vh;
@@ -26,6 +30,7 @@
     position: fixed;
     top: 0;
     left: -100%;
+    opacity: 0.9;
     transition: 850ms;
   }
   .border{ 

@@ -23,8 +23,8 @@ class Login extends React.Component{
             .then(res=>{
                 if(res.data)
                 {
-                    localStorage.setItem('cool-jwt',res.data);
-                    this.props.changestate(username);
+                    localStorage.setItem('cool-jwt',res.data.token);
+                    this.props.changestate(username,res.data.email);
                     this.props.history.push('/');
                 }
                 else
@@ -38,7 +38,7 @@ class Login extends React.Component{
             
                 <div 
                 className="container"
-                style={ { height: "100%" } }>
+                style={ { height: "100%" ,marginTop:"-80px"} }>
 
                     <div 
                     className="d-flex justify-content-center align-items-center"

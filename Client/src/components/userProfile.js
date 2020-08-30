@@ -1,14 +1,14 @@
 import React from 'react';
 import '../css/Navbar.css'
-import {BrowserRouter , Route , Switch , Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
-import * as AiIcons from 'react-icons/ai'
-import * as GiIcons from 'react-icons/gi'
+
 
 class Profile extends React.Component {
 
     state = {
-        username : this.props.username , 
+        username : this.props.state.username ,
+        email:this.props.state.email ,
         posts : []
     }    
     
@@ -25,6 +25,11 @@ class Profile extends React.Component {
     }
     
     render() {
+        this.state.posts.map(data=>{
+            var date=new Date(data.date);
+            var ans=date.toDateString();
+            data.date=ans;
+        })
 
         const {posts} = this.state;
 
@@ -57,9 +62,6 @@ class Profile extends React.Component {
         return (
             
             <div style = {{maxWidth : "1000px" , margin : "0px auto"}}> 
-            <br></br>
-            <br></br>
-            <br></br>
             
                 <div style = {{
                     display : "flex" ,
@@ -72,11 +74,11 @@ class Profile extends React.Component {
                     </div>
                     
                     <div style = {{marginLeft:"-300px"}}> 
-                        <h4 style = {{marginTop:"50px"}} > {this.state.username} </h4>
+                        <h4 style = {{marginTop:"50px"}} > {this.state.username}<br></br><h6>{this.state.email}</h6> </h4>
                         
                         <div style = {{display : "flex" , justifyContent : "space-between" , width : "108%" , marginTop : "0%"}}>
                             <Link to='/editprofile'><button className = "btn waves-effect waves-light">Edit Profile</button></Link>
-                            <Link to='/write'><button className = "btn waves-effect waves-light">Create Post</button></Link>                            
+                            <Link to='/write'><button className = "btn waves-effect waves-light">Write a Post</button></Link>                            
                         </div>
                     
                     </div>

@@ -1,5 +1,6 @@
 const connection=require('../connection');
 
+//For Schema of User and Blog table refer to connection.js 
 var user=function(user){
     this.username=user.username;
     this.email=user.email;
@@ -17,7 +18,7 @@ user.create=function(new_user,result){
 };
 
 user.search=function(username,result){
-    connection.query("SELECT * from user where username=?",username,(err,res)=>{
+    connection.query("SELECT * from blog where id=?",username,(err,res)=>{
 
         if(err)
             result(err,null);
@@ -27,9 +28,10 @@ user.search=function(username,result){
 };
 
 user.showall=function(result){
-    connection.query("SELECT * from user",(err,res)=>{
+    connection.query("SELECT * from blog",(err,res)=>{
         if(err)
-            result(err,null);
+        {    result(err,null);
+        }
         else
             result(null,res);
     })

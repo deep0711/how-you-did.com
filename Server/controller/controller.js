@@ -1,7 +1,6 @@
 require('dotenv').config();
 const user=require('../model/model');
 const jwt = require('jsonwebtoken');
-const passport = require('passport');
 
 
 exports.create=function(req,res){
@@ -10,9 +9,14 @@ exports.create=function(req,res){
     
     user.create(new_user,(err,user)=>{
         if(err)
+        {    
             res.send(err);
-        else
-            res.json(user);   
+            
+        }   
+        else{
+            
+            res.json(user);
+        }       
     });
 };
 
@@ -29,6 +33,8 @@ exports.search=function(req,res){
 exports.showall=function(req,res){
     
     user.showall((err,user)=>{
+        console.log(user);
+        
         if(err)
             res.send(err);
         else
@@ -81,9 +87,17 @@ exports.gettoken=function(req,res){
         {
             if(user.length===1)
             {
-                const payload={id:user[0].username};
-                const token=jwt.sign(payload,process.env.JWT_KEY);
-                res.send(token);
+                console.log(user[0]);
+                const payload={
+                    id:user[0].username,
+                    email:user[0].email
+                };
+                const token=jwt.sign(payload,process.env.JWT_KEY,{expiresIn:'60d'});
+                const data={
+                    token:token,
+                    email:user[0].email
+                }
+                res.send(data);
             }
             else
                 res.send(null);
@@ -103,6 +117,6 @@ exports.getuser=function(req,res){
         } catch (e) {
             return res.status(401).send('unauthorized');
         }
-        res.send(decoded.id);
+        res.send(decoded);
     }
 }
