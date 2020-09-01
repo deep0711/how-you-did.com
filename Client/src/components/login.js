@@ -52,11 +52,11 @@ class Login extends React.Component{
                                 <form onSubmit={ this.handlesubmit }>
                                     <div class="form-group">
                                         <label for="username">User Name</label>
-                                        <input type="text" class="form-control" id="username" required/>
+                                        <input type="text" class="form-control" id="username" required autoComplete = "off"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="password">Password</label>
-                                        <input type="password" class="form-control" id="password" required/>
+                                        <input type="password" class="form-control" id="password" required autoComplete = "off"/>
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-block ml-auto mb-4">Login</button>
                                 </form>

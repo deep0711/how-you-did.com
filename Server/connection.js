@@ -3,7 +3,7 @@ const mysql=require('mysql')
 var connection = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "ABCabc123@",
+    password: "Kunal@1999",
     database: "BLOG",
     insecureAuth : true
   });
@@ -33,7 +33,7 @@ connection.query("SELECT * from user",(err,res)=>{
 connection.query("SELECT * from blog",(err,res)=>{
   if(!res)
   {
-      connection.query("Create Table blog(id int Primary key,title varchar(100),tags varchar(100),body varchar(3000),author varchar(100),date date)",(err,res)=>{
+      connection.query("Create Table blog(id int auto_increment Primary key,title varchar(100),tags varchar(100),body varchar(3000),author varchar(100),date date)",(err,res)=>{
         if(err)
           console.log('Table not Created');
         else

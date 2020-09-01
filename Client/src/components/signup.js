@@ -17,7 +17,7 @@ const Signup=(props)=>{
         axios.post(url,data)
             .then(res=>{
                 console.log(res);
-                if(res.data!=0)
+                if(res.data !== 0)
                 {
                     alert('User Already there.Try Again with different username');    
                 }
@@ -50,15 +50,15 @@ const Signup=(props)=>{
                                 <form onSubmit={ handlesubmit }>
                                     <div class="form-group">
                                         <label for="username">User Name</label>
-                                        <input type="text" class="form-control" id="username" required/>
+                                        <input type="text" class="form-control" id="username" required autoComplete = "off"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="email">Email address</label>
-                                        <input type="email" class="form-control" id="email" required/>
+                                        <input type="email" class="form-control" id="email" required autoComplete = "off"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="password">Password</label>
-                                        <input type="password" class="form-control" id="password" required/>
+                                        <input type="password" class="form-control" id="password" required autoComplete = "off"/>
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-block ml-auto mb-4">Submit</button>
                                 </form>

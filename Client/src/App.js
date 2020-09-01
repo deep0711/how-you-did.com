@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import Notlogged from './components/not-logged-in.js';
 import Loggedin from './components/Logged-in';
 import Login from './components/login';
@@ -9,6 +9,7 @@ import NavBar from './components/Navbar';
 import Profile from './components/userProfile';
 import Post from './components/post'
 import Tag from './components/tag'
+import CreatePost from './components/Create'
 
 class App extends React.Component{
     
@@ -34,7 +35,6 @@ class App extends React.Component{
             status:"Not_Logged_In",
             username:null
         })
-        
     }
     //Run on mounting.Check wether user is logged in or not
     componentDidMount(){
@@ -106,8 +106,7 @@ class App extends React.Component{
                         <Route path='/profile' render={ (props)=>< Profile {...props} state={this.state}/>}/>
                         <Route path='/post/:post_id' component={Post}/>
                         <Route path='/tags/:tag_id' component={Tag}/>
-                        {//<Route path='/editprofile' component={EditProfile}/>
-                        }
+                        <Route path='/create' render = { (props)=>< CreatePost {...props} state={this.state}/>}/>    
                     </div>
                 </BrowserRouter>
             )

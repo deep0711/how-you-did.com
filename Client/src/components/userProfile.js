@@ -78,7 +78,7 @@ class Profile extends React.Component {
                         
                         <div style = {{display : "flex" , justifyContent : "space-between" , width : "108%" , marginTop : "0%"}}>
                             <Link to='/editprofile'><button className = "btn waves-effect waves-light">Edit Profile</button></Link>
-                            <Link to='/write'><button className = "btn waves-effect waves-light">Write a Post</button></Link>                            
+                            <Link to='/create'><button className = "btn waves-effect waves-light">Write a Post</button></Link>                            
                         </div>
                     
                     </div>

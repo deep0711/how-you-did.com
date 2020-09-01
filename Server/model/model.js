@@ -6,7 +6,12 @@ var user=function(user){
     this.email=user.email;
     this.password=user.password;
 };
-
+var post = function(post) {
+    this.username = post.username;
+    this.tags = post.tags;
+    this.title = post.title;
+    this.body = post.body;
+}
 user.create=function(new_user,result){
     connection.query("INSERT INTO user set ?",new_user,(err,res)=>{
 
@@ -16,7 +21,12 @@ user.create=function(new_user,result){
             result(null,res.insertId);
     });
 };
-
+post.insert = function(new_post , result) {
+    connection.query("INSERT INTO BLOG (TITLE , TAGS , BODY , AUTHOR) VALUES (? , ? , ? , ?);" , [new_post.title , new_post.tags , new_post.body , new_post.username] , (err , res) => {
+        if(err) result(err , null);
+        else result(null , res.insertId);
+    })
+}
 user.search=function(username,result){
     connection.query("SELECT * from blog where id=?",username,(err,res)=>{
 
@@ -65,4 +75,5 @@ user.login=function(username,password,result){
     });
 };
 
-module.exports=user;
+
+module.exports = {user , post};

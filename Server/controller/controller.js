@@ -1,7 +1,9 @@
 require('dotenv').config();
-const user=require('../model/model');
+const mod = require('../model/model');
 const jwt = require('jsonwebtoken');
 
+const user = mod.user;
+const post = mod.post;
 
 exports.create=function(req,res){
     
@@ -11,14 +13,19 @@ exports.create=function(req,res){
         if(err)
         {    
             res.send(err);
-            
         }   
         else{
-            
             res.json(user);
         }       
     });
 };
+exports.insert = function(req , res) {
+    const new_post = new post(req.body);
+    post.insert(new_post , (err , post) => {
+        if(err) res.send(err);
+        else res.json(post);
+    })
+}
 
 exports.search=function(req,res){
     
