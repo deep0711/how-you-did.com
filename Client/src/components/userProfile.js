@@ -9,22 +9,31 @@ class Profile extends React.Component {
     state = {
         username : this.props.state.username ,
         email:this.props.state.email ,
+        profileimage:null,
         posts : []
     }    
     
-    editProfile = () => {
-        
-    }
-
     componentDidMount() {
         axios.get('http://localhost:8000/post').then(res => {
+
             this.setState({
                 posts : res.data.slice(0 , 3)
             })
         })
+        const data={
+            username:this.props.state.username
+        }
+
+        axios.post('http://localhost:8000/post/getimage',data)
+            .then(res=>{
+                this.setState({
+                    profileimage:res.data[0].image
+                })
+            })
     }
     
     render() {
+        
         this.state.posts.map(data=>{
             var date=new Date(data.date);
             var ans=date.toDateString();
@@ -58,7 +67,6 @@ class Profile extends React.Component {
                 )
             })
         ):(<div className = "container">No Liked Posts</div>)
-
         return (
             
             <div style = {{maxWidth : "1000px" , margin : "0px auto"}}> 
@@ -70,7 +78,10 @@ class Profile extends React.Component {
                     borderBottom : "1px solid grey"
                 }}>
                     <div>
-                        <img className = "profile-img center" src = "https://images.unsplash.com/photo-1555952517-2e8e729e0b44?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"/>
+                        {
+                            this.state.profileimage!=null &&  
+                            <img className = "profile-img center" src ={require('../image/'+this.state.username+this.state.profileimage)} alt={"Profile Image"}/>
+                        }
                     </div>
                     
                     <div style = {{marginLeft:"-300px"}}> 
@@ -93,6 +104,8 @@ class Profile extends React.Component {
                 </div>
              </div>   
         )
+        
     }
+    
 };
 export default Profile;

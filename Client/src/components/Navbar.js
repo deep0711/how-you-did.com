@@ -14,6 +14,11 @@ function Navbar(props) {
     const [sidebar , setSidebar] = useState(false);
     const showSidebar = () => setSidebar(!sidebar);
 
+    const handlelogout =()=>{
+        props.logout();
+        props.history.push('/');
+    }
+
     if(!props.username)
     {
         return(
@@ -22,8 +27,8 @@ function Navbar(props) {
                     <Link to = "#" className = "menu-bars" style={{marginTop:"-14px"}} >
                         <FaIcons.FaBars onClick = {showSidebar} />
                     </Link>
-                    <ul class="navbar-nav mr-auto" style={{marginLeft:"5px",marginTop:"0px"}}>
-                        <li class="nav-item active">
+                    <ul className="navbar-nav mr-auto" style={{marginLeft:"5px",marginTop:"0px"}}>
+                        <li className="nav-item active">
                             <h3>How-You-Did</h3>
                         </li>
                         
@@ -37,7 +42,7 @@ function Navbar(props) {
                                 <AiIcons.AiOutlineClose/>
                             </Link>
                         </li>
-                        <li className = "navbar-toggle" onClick = {props.logout}>
+                        <li className = "navbar-toggle">
                             <Link to = "/login" className = "nav-text" style={{textDecoration:"none"}}>
                                 <FiIcons.FiLogIn className = "largeicon"/>
                                 <span>Login</span>
@@ -56,12 +61,12 @@ function Navbar(props) {
                     <Link to = "#" className = "menu-bars" style={{marginTop:"-14px"}}>
                         <FaIcons.FaBars onClick = {showSidebar} />
                     </Link>
-                    <ul class="navbar-nav mr-auto" style={{marginLeft:"5px",marginTop:"0px"}}>
-                        <li class="nav-item active">
+                    <ul className="navbar-nav mr-auto" style={{marginLeft:"5px",marginTop:"0px"}}>
+                        <li className="nav-item active">
                             <h3>How-You-Did</h3>
                         </li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul className="nav navbar-nav navbar-right">
                         <Link to = "/" className = "nav-text" style={{textDecoration:"none"}}>
                             <BiIcons.BiHomeHeart className = "largeicon"/>
                             
@@ -88,7 +93,7 @@ function Navbar(props) {
                             </Link>
                         </li>
                         <li className = "navbar-toggle" >
-                            <Link to = "/create" className = "nav-text" style={{textDecoration:"none"}}>
+                            <Link to = "/write" className = "nav-text" style={{textDecoration:"none"}}>
                                 <IoIcons.IoIosCreate className = "largeicon"/>
                                 <span>Write a Post</span>
                             </Link>
@@ -100,7 +105,7 @@ function Navbar(props) {
                             </Link>
                         </li>
                         
-                        <li className = "navbar-toggle" onClick = {props.logout}>
+                        <li className = "navbar-toggle" onClick = {handlelogout}>
                             <Link to = "#" className = "nav-text" style={{textDecoration:"none"}}>
                                 <FiIcons.FiLogOut className = "largeicon"/>
                                 <span>Logout</span>

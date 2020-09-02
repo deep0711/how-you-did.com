@@ -17,7 +17,7 @@ const Signup=(props)=>{
         axios.post(url,data)
             .then(res=>{
                 console.log(res);
-                if(res.data!=0)
+                if(res.data!==0)
                 {
                     alert('User Already there.Try Again with different username');    
                 }
