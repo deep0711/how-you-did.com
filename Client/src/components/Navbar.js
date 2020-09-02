@@ -14,6 +14,11 @@ function Navbar(props) {
     const [sidebar , setSidebar] = useState(false);
     const showSidebar = () => setSidebar(!sidebar);
 
+    const handlelogout =()=>{
+        props.logout();
+        props.history.push('/');
+    }
+
     if(!props.username)
     {
         return(
@@ -28,6 +33,7 @@ function Navbar(props) {
                         </li>
                         
                     </ul>
+                    
                 </div>
                 <nav className = {sidebar ? 'nav-menu active' : 'nav-menu'}>
                     <ul className = "nav-menu-items" onClick = {showSidebar}>
@@ -36,8 +42,8 @@ function Navbar(props) {
                                 <AiIcons.AiOutlineClose/>
                             </Link>
                         </li>
-                        <li className = "navbar-toggle" onClick = {props.logout}>
-                            <Link to = "/login" className = "nav-text" style={{textDecoration:"none" , color : "white"}}>
+                        <li className = "navbar-toggle">
+                            <Link to = "/login" className = "nav-text" style={{textDecoration:"none"}}>
                                 <FiIcons.FiLogIn className = "largeicon"/>
                                 <span>Login</span>
                             </Link>
@@ -61,7 +67,7 @@ function Navbar(props) {
                         </li>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
-                        <Link to = "/" className = "nav-text" style={{textDecoration:"none" , color : "white"}}>
+                        <Link to = "/" className = "nav-text" style={{textDecoration:"none"}}>
                             <BiIcons.BiHomeHeart className = "largeicon"/>
                             
                         </Link>
@@ -81,26 +87,26 @@ function Navbar(props) {
                         
                         <div className="side-data" style={{marginLeft:"13px"}}>
                         <li className = "navbar-toggle">
-                            <Link to = "/profile" className = "nav-text" style = {{textDecoration:"none", color : "white"}}>
+                            <Link to = "/profile" className = "nav-text" style={{textDecoration:"none"}}>
                                 <CgIcons.CgProfile className = "largeicon"/>
                                 <span>Profile</span>
                             </Link>
                         </li>
                         <li className = "navbar-toggle" >
-                            <Link to = "/create" className = "nav-text" style = {{textDecoration:"none", color : "white"}}>
+                            <Link to = "/write" className = "nav-text" style={{textDecoration:"none"}}>
                                 <IoIcons.IoIosCreate className = "largeicon"/>
                                 <span>Write a Post</span>
                             </Link>
                         </li>
                         <li className = "navbar-toggle" >
-                            <Link to = "/trending" className = "nav-text" style={{textDecoration:"none", color : "white"}}>
+                            <Link to = "/trending" className = "nav-text" style={{textDecoration:"none"}}>
                                 <RiIcons.RiFireLine className = "largeicon"/>
                                 <span>Trending</span>
                             </Link>
                         </li>
                         
-                        <li className = "navbar-toggle" onClick = {props.logout}>
-                            <Link to = "#" className = "nav-text" style={{textDecoration:"none", color : "white"}}>
+                        <li className = "navbar-toggle" onClick = {handlelogout}>
+                            <Link to = "#" className = "nav-text" style={{textDecoration:"none"}}>
                                 <FiIcons.FiLogOut className = "largeicon"/>
                                 <span>Logout</span>
                             </Link>

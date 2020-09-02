@@ -1,4 +1,4 @@
-import React, { createRef } from 'react';
+import React from 'react';
 import Notlogged from './components/not-logged-in.js';
 import Loggedin from './components/Logged-in';
 import Login from './components/login';
@@ -7,9 +7,10 @@ import axios from 'axios';
 import Signup from './components/signup';
 import NavBar from './components/Navbar';
 import Profile from './components/userProfile';
-import Post from './components/post'
-import Tag from './components/tag'
-import CreatePost from './components/Create'
+import Post from './components/post';
+import Tag from './components/tag';
+import EditProfile from './components/EditProfile';
+import CreatePost from './components/Create';
 
 class App extends React.Component{
     
@@ -35,6 +36,7 @@ class App extends React.Component{
             status:"Not_Logged_In",
             username:null
         })
+        
     }
     //Run on mounting.Check wether user is logged in or not
     componentDidMount(){
@@ -54,8 +56,7 @@ class App extends React.Component{
 
             axios.get(url,{ headers: {authorization: 'Bearer '+ token}})
                 .then(res=>{
-                    console.log(res.data);
-                    this.setState({
+                this.setState({
                         status:"Logged_In",
                         username:res.data.id,
                         email:res.data.email
@@ -104,9 +105,10 @@ class App extends React.Component{
                         <Route path='/' render={ (props)=>< NavBar {...props} username={this.state.username} logout={this.logout} />}/>
                         <Route exact path="/" component={ Loggedin }/>
                         <Route path='/profile' render={ (props)=>< Profile {...props} state={this.state}/>}/>
-                        <Route path='/post/:post_id' component={Post}/>
+                        <Route path='/post/:post_id' render={ (props)=>< Post {...props} state={this.state}/>}/>
                         <Route path='/tags/:tag_id' component={Tag}/>
-                        <Route path='/create' render = { (props)=>< CreatePost {...props} state={this.state}/>}/>    
+                        <Route path='/editprofile' render={ (props)=>< EditProfile {...props} state={this.state} logout={this.logout} />}/>
+                        <Route path='/write' render={ (props)=>< CreatePost {...props} state={this.state}/> }/>
                     </div>
                 </BrowserRouter>
             )

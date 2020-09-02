@@ -27,13 +27,18 @@ class createPost extends React.Component {
             if(word[0] === '#') tag = tag +  word + " ";
         })
         const data = {
+            id:134,
             title : this.state.title ,
             tags : tag , 
             body : this.state.body ,
-            username : this.state.username ,
+            author : this.state.username ,
+            date:'2020-01-28',
+            Likes:0
         }
 
         axios.post('http://localhost:8000/post/create' , data).then(res => {
+            
+            console.log(res);
             this.props.history.goBack();
         }).catch(e => {
             console.log("error");
