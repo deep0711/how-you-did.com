@@ -12,6 +12,7 @@ Router.post('/update',user_controller.update);
 Router.post('/login',user_controller.login);
 Router.post('/gettoken',user_controller.gettoken);
 Router.get('/getuser',user_controller.getuser);
+Router.post('/create' ,user_controller.insert);
 
 module.exports=Router;
 

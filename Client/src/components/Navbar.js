@@ -22,13 +22,12 @@ function Navbar(props) {
                     <Link to = "#" className = "menu-bars" style={{marginTop:"-14px"}} >
                         <FaIcons.FaBars onClick = {showSidebar} />
                     </Link>
-                    <ul class="navbar-nav mr-auto" style={{marginLeft:"5px",marginTop:"0px"}}>
-                        <li class="nav-item active">
+                    <ul className="navbar-nav mr-auto" style={{marginLeft:"5px",marginTop:"0px"}}>
+                        <li className="nav-item active">
                             <h3>How-You-Did</h3>
                         </li>
                         
                     </ul>
-                    
                 </div>
                 <nav className = {sidebar ? 'nav-menu active' : 'nav-menu'}>
                     <ul className = "nav-menu-items" onClick = {showSidebar}>
@@ -38,7 +37,7 @@ function Navbar(props) {
                             </Link>
                         </li>
                         <li className = "navbar-toggle" onClick = {props.logout}>
-                            <Link to = "/login" className = "nav-text" style={{textDecoration:"none"}}>
+                            <Link to = "/login" className = "nav-text" style={{textDecoration:"none" , color : "white"}}>
                                 <FiIcons.FiLogIn className = "largeicon"/>
                                 <span>Login</span>
                             </Link>
@@ -56,13 +55,13 @@ function Navbar(props) {
                     <Link to = "#" className = "menu-bars" style={{marginTop:"-14px"}}>
                         <FaIcons.FaBars onClick = {showSidebar} />
                     </Link>
-                    <ul class="navbar-nav mr-auto" style={{marginLeft:"5px",marginTop:"0px"}}>
-                        <li class="nav-item active">
+                    <ul className="navbar-nav mr-auto" style={{marginLeft:"5px",marginTop:"0px"}}>
+                        <li className="nav-item active">
                             <h3>How-You-Did</h3>
                         </li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <Link to = "/" className = "nav-text" style={{textDecoration:"none"}}>
+                    <ul className="nav navbar-nav navbar-right">
+                        <Link to = "/" className = "nav-text" style={{textDecoration:"none" , color : "white"}}>
                             <BiIcons.BiHomeHeart className = "largeicon"/>
                             
                         </Link>
@@ -82,26 +81,26 @@ function Navbar(props) {
                         
                         <div className="side-data" style={{marginLeft:"13px"}}>
                         <li className = "navbar-toggle">
-                            <Link to = "/profile" className = "nav-text" style={{textDecoration:"none"}}>
+                            <Link to = "/profile" className = "nav-text" style = {{textDecoration:"none", color : "white"}}>
                                 <CgIcons.CgProfile className = "largeicon"/>
                                 <span>Profile</span>
                             </Link>
                         </li>
                         <li className = "navbar-toggle" >
-                            <Link to = "/create" className = "nav-text" style={{textDecoration:"none"}}>
+                            <Link to = "/create" className = "nav-text" style = {{textDecoration:"none", color : "white"}}>
                                 <IoIcons.IoIosCreate className = "largeicon"/>
                                 <span>Write a Post</span>
                             </Link>
                         </li>
                         <li className = "navbar-toggle" >
-                            <Link to = "/trending" className = "nav-text" style={{textDecoration:"none"}}>
+                            <Link to = "/trending" className = "nav-text" style={{textDecoration:"none", color : "white"}}>
                                 <RiIcons.RiFireLine className = "largeicon"/>
                                 <span>Trending</span>
                             </Link>
                         </li>
                         
                         <li className = "navbar-toggle" onClick = {props.logout}>
-                            <Link to = "#" className = "nav-text" style={{textDecoration:"none"}}>
+                            <Link to = "#" className = "nav-text" style={{textDecoration:"none", color : "white"}}>
                                 <FiIcons.FiLogOut className = "largeicon"/>
                                 <span>Logout</span>
                             </Link>
