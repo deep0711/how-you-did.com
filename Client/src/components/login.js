@@ -44,21 +44,21 @@ class Login extends React.Component{
                     className="d-flex justify-content-center align-items-center"
                     style={  {width: "100%" , height: "100%" }}>
                         
-                        <div className="card" style={ { width: "26rem" }}>
-                            <div className="card-header">
+                        <div class="card" style={ { width: "26rem" }}>
+                            <div class="card-header">
                                 <center>Login</center>
                             </div>
-                            <div className="card-body">
+                            <div class="card-body">
                                 <form onSubmit={ this.handlesubmit }>
-                                    <div className="form-group">
-                                        <label htmlFor="username">User Name</label>
-                                        <input type="text" className="form-control" id="username" required/>
+                                    <div class="form-group">
+                                        <label for="username">User Name</label>
+                                        <input type="text" class="form-control" id="username" required autoComplete = "off"/>
                                     </div>
-                                    <div className="form-group">
-                                        <label htmlFor="password">Password</label>
-                                        <input type="password" className="form-control" id="password" required/>
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" id="password" required autoComplete = "off"/>
                                     </div>
-                                    <button type="submit" className="btn btn-primary btn-block ml-auto mb-4">Login</button>
+                                    <button type="submit" class="btn btn-primary btn-block ml-auto mb-4">Login</button>
                                 </form>
                                 <Link to="/create" className="card-link mt-5"><center>New Here ?</center></Link>
                             </div>

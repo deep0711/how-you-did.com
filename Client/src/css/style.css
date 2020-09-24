@@ -20,13 +20,3 @@ div.deepak::-webkit-scrollbar {
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
 }
-
-div.Image_wrap:hover div.upload{
-  visibility:visible; 
-  
-}
-
-
-div.upload {
-  visibility: hidden;
-}

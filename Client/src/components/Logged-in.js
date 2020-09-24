@@ -1,4 +1,4 @@
-import React from 'react';
+import React  from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import '../css/style.css';
@@ -6,7 +6,7 @@ import '../css/style.css';
 class Home extends React.Component{
     
     state={
-        tagsX :["#tech" , "#beauty" , "#C++" , "#javascript" , "#python" , "#home" , "#life" , "#motivation" , "#health" , "#love"  ],
+        tagsX :["#tech" , "#beauty" , "#C++" , "#javascript" , "#python" , "#home" , "#life" , "#motivation" , "#health" , "#love" , "#animal" ],
         topposts:[],
         posts:[]
     }
@@ -23,7 +23,6 @@ class Home extends React.Component{
     }
 
     render(){
-    
     this.state.posts.map(data=>{
         var date=new Date(data.date);
         var ans=date.toDateString();
@@ -32,7 +31,7 @@ class Home extends React.Component{
 
     const toppostlist=this.state.topposts.map(data=>{
         return(
-                <Link to={'/post/'+data.id} style={{fontFamily:"cursive",textDecoration:"none",color:"black"}}>
+                <Link to={'/post/'+data.id} style={{textDecoration:"none",color:"black"}}>
                     <div className="col s12">
                     <div className="card" style={{width: "18rem",height:"10rem"}}>
                         <div className="card-body">
@@ -41,7 +40,7 @@ class Home extends React.Component{
                                 <br></br>
                                 <h6>{data.tags}</h6>
                             </div>
-                            <p className="card-text" style={{textDecoration:"none",color:"black"}}>
+                            <p className="card-text" style={{textDecoration:"none",color:"grey"}}>
                                 
                                 {data.author}<br></br>
                                 {data.date}
@@ -56,7 +55,7 @@ class Home extends React.Component{
     const postlist=this.state.posts.map(data=>{
         return(
             <div className="row">
-                <Link to={'/post/'+data.id} style={{fontFamily:"cursive",textDecoration:"none",color:"black"}}>
+                <Link to={'/post/'+data.id} style={{textDecoration:"none",color:"black"}}>
                     <div className="col s12">
                     <div className="card" style={{width: "50rem",height:"10rem",border:"2px solid grey"}}>
                         <div className="card-body">
@@ -65,7 +64,7 @@ class Home extends React.Component{
                                 <br></br>
                                 <h6>{data.tags}</h6>
                             </div>
-                            <p className="card-text" style={{textDecoration:"none",color:"black"}}>
+                            <p className="card-text" style={{textDecoration:"none",color:"grey"}}>
                                 {data.author}<br></br>
                                 {data.date}
                             </p>
@@ -81,7 +80,7 @@ class Home extends React.Component{
             
             <div className="homeTags d-flex justify-content-center flex-wrap p-3">
                     {
-                        this.state.tagsX.map(tag => <Link to={'/tags/'+tag.substring(1,tag.length)}><button className="btn btn-outline-secondary m-2" style={{fontFamily:"cursive",color:"black",border:"2px solid black"}}>{ tag }</button></Link>)
+                        this.state.tagsX.map(tag => <Link to={'/tags/'+tag.substring(1,tag.length)}><button className="btn btn-outline-secondary m-2" style={{color:"black",border:"2px solid black"}}>{ tag }</button></Link>)
                     }               
             </div>
             <hr></hr>

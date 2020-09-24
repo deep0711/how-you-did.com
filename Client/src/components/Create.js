@@ -5,6 +5,9 @@ import * as AiIcons from 'react-icons/ai'
 import * as FaIcons from 'react-icons/fa'
 import * as GrIcons from 'react-icons/gr'
 import axios from 'axios';
+import CKEditor from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 class createPost extends React.Component {
     
     state = {
@@ -12,7 +15,7 @@ class createPost extends React.Component {
         tags : '' ,
         body : '',
         username : this.props.state.username ,
-        selectedFile : null
+        selectedFile : null ,
     }
     handleChange = (e) => {
         this.setState({
@@ -21,24 +24,20 @@ class createPost extends React.Component {
     }
     handleSubmit = (e) => {
         e.preventDefault(); 
+        console.log(this.state);
         let words = this.state.body.split(" ");
         let tag = '';
         words.map(word => {
             if(word[0] === '#') tag = tag +  word + " ";
         })
         const data = {
-            id:134,
             title : this.state.title ,
             tags : tag , 
             body : this.state.body ,
-            author : this.state.username ,
-            date:'2020-01-28',
-            Likes:0
+            username : this.state.username ,
         }
 
         axios.post('http://localhost:8000/post/create' , data).then(res => {
-            
-            console.log(res);
             this.props.history.goBack();
         }).catch(e => {
             console.log("error");
@@ -63,15 +62,27 @@ class createPost extends React.Component {
         //     console.log('Error While Uploading');
         // })
     }
+    
     render() {
         return(
             <>
-                <div className = "post">
+                <div className = "post"> 
                 <form onSubmit = {this.handleSubmit} className = "form">
                     <label className = "title">Title</label>
                     <input onChange = {this.handleChange} type = "text" name = "title" autoComplete = "off" />
                     <label className = "title" >Write Something !</label>
-                    <textarea onChange = {this.handleChange} style = {{minHeight : 300 , fontFamily  : "'B612', sans-serif"}} name = "body"></textarea>
+                    <CKEditor
+                    editor={ ClassicEditor }
+                    data = ""
+                    onInit={ editor => {
+                        // You can store the "editor" and use when it is needed.
+                        console.log( 'Editor is ready to use!', editor );
+                    }}
+                    onChange={ ( event, editor ) => {
+                        const data = editor.getData();
+                        this.setState({body : data});
+                    } }
+                    />
                     <div className = "icons">
                         <input style = {{display : "none"}} type = "file" onChange = {this.fileSelectedHandler}
                          ref = {fileInput => this.fileInput = fileInput}/>
@@ -81,7 +92,7 @@ class createPost extends React.Component {
                     </div>
                     <button className = "waves-effect waves-light btn" style = {{float : "right"}} type = "submit" ><FaIcons.FaLocationArrow style = {{color : "blue"}}/></button>
                 </form>
-                </div>
+                </div>               
             </>
         )
     }

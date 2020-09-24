@@ -1,11 +1,9 @@
 require('dotenv').config();
-const mod=require('../model/model');
+const mod = require('../model/model');
 const jwt = require('jsonwebtoken');
 
-const user=mod.user;
-const post=mod.post;
-
-
+const user = mod.user;
+const post = mod.post;
 
 exports.create=function(req,res){
     
@@ -15,27 +13,19 @@ exports.create=function(req,res){
         if(err)
         {    
             res.send(err);
-            
         }   
         else{
-            
             res.json(user);
         }       
     });
 };
-
 exports.insert = function(req , res) {
     const new_post = new post(req.body);
     post.insert(new_post , (err , post) => {
         if(err) res.send(err);
-        else{ 
-            console.log("DOne");
-            res.json(post);
-        }    
-
+        else res.json(post);
     })
 }
-
 
 exports.search=function(req,res){
     
@@ -50,6 +40,7 @@ exports.search=function(req,res){
 exports.showall=function(req,res){
     
     user.showall((err,user)=>{
+        console.log(user);
         
         if(err)
             res.send(err);
@@ -69,12 +60,12 @@ exports.delete=function(req,res){
 };    
 
 exports.update=function(req,res){
-
-    user.update(req.body.prev_username,req.body.username,req.body.password,(err,user)=>{
+    
+    user.update(req.body.username,req.body.password,(err,user)=>{
         if(err)
             res.send(err);
         else
-            res.send('Updated Successfully');
+            res.json(user);
     });
 };
 
@@ -135,81 +126,4 @@ exports.getuser=function(req,res){
         }
         res.send(decoded);
     }
-}
-
-exports.gettag=function(req,res){
-    
-    user.gettag(req.body.tag,(err,post)=>{
-        if(err)
-            res.send(err);
-        else
-            res.json(post);    
-    })
-}
-
-exports.image=function(req,res){
-    if(!req.files)
-        res.status(400).send('No file uploaded');
-
-    var file=req.files.file;
-    var filename=req.files.file.name;
-    var address='C:\\Users\\deepa\\Documents\\React\\how-you-did.com\\src\\image\\'+req.body.username+filename;
-    
-    console.log(address);
-    if(file.mimetype=='image/jpeg' || file.mimetype=='image/png' || file.mimetype=='image/gif'){
-        file.mv(address,err=>{
-            if(err)
-            {
-                console.log("Error Occured");
-                res.status(500).send(err);
-            }
-            else
-            {
-                user.store_image(req.body.username,filename,(err,user)=>{
-                    if(err)
-                    {
-                        res.status(500).send(err);
-                    }
-                    else
-                    {
-                        res.send('Updated Successfully');
-                    }
-                })
-            }
-        });
-    }
-}
-
-exports.getimage=function(req,res){
-    user.getimage(req.body.username,(err,path)=>{
-        if(err)
-            res.status(500).send(err);
-        else
-            res.send(path);    
-    })
-}
-
-exports.like=function(req,res){
-    
-    user.like(req.body.id,req.body.username,(err,post)=>{
-        console.log(post);
-        if(err)
-            res.status(500).send(err);
-        else
-            res.send('Liked');    
-    })
-}
-
-exports.has_liked=function(req,res){
-    user.has_liked(req.body.username,req.body.id,(err,post)=>{
-        if(err)
-            res.status(500).send(err);
-        else
-        {
-            if(post.length===0)
-                res.send('not_liked');
-            else
-                res.send('liked');    
-        }    
-    })
 }
