@@ -24,7 +24,6 @@ class createPost extends React.Component {
     }
     handleSubmit = (e) => {
         e.preventDefault(); 
-        console.log(this.state);
         let words = this.state.body.split(" ");
         let tag = '';
         words.map(word => {
@@ -36,9 +35,10 @@ class createPost extends React.Component {
             body : this.state.body ,
             username : this.state.username ,
         }
-
+        console.log(data);
         axios.post('http://localhost:8000/post/create' , data).then(res => {
-            this.props.history.goBack();
+            console.log(res);
+            this.props.history.push('/');
         }).catch(e => {
             console.log("error");
         })

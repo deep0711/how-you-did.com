@@ -6,12 +6,16 @@ var user=function(user){
     this.email=user.email;
     this.password=user.password;
 };
+
 var post = function(post) {
-    this.username = post.username;
+    this.author = post.username;
     this.tags = post.tags;
     this.title = post.title;
     this.body = post.body;
+    this.date=new Date();
+    this.Likes=0;
 }
+
 user.create=function(new_user,result){
     connection.query("INSERT INTO user set ?",new_user,(err,res)=>{
 
@@ -21,12 +25,19 @@ user.create=function(new_user,result){
             result(null,res.insertId);
     });
 };
+
 post.insert = function(new_post , result) {
-    connection.query("INSERT INTO BLOG (TITLE , TAGS , BODY , AUTHOR) VALUES (? , ? , ? , ?);" , [new_post.title , new_post.tags , new_post.body , new_post.username] , (err , res) => {
-        if(err) result(err , null);
-        else result(null , res.insertId);
+    console.log("In backend",new_post);
+    connection.query("INSERT INTO blog set ?" , new_post , (err , res) => {
+        if(err) 
+            result(err , null);
+        else 
+        {   console.log("Data Inserted !!"); 
+            result(null , res.insertId);
+        }    
     })
 }
+
 user.search=function(username,result){
     connection.query("SELECT * from blog where id=?",username,(err,res)=>{
 
@@ -56,14 +67,26 @@ user.delete=function(username,result){
     });
 };
 
-user.update=function(username,password,result){
+user.update=function(prev_username,username,password,result){
 
-    connection.query("UPDATE user SET password=? where username=?",[password,username],(err,res)=>{
-        if(err)
-            result(err,null);
-        else
-            result(null,res);
-    });
+    if(username)
+    {
+        connection.query("UPDATE user SET username=? where username=?",[username,prev_username],(err,res)=>{
+            if(err)
+                result(err,null);
+            else
+                result(null,res);
+        });
+    } 
+    else
+    {
+        connection.query("UPDATE user SET password=? where username=?",[password,prev_username],(err,res)=>{
+            if(err)
+                result(err,null);
+            else
+                result(null,res);
+        });
+    }   
 };
 
 user.login=function(username,password,result){
@@ -75,5 +98,85 @@ user.login=function(username,password,result){
     });
 };
 
+user.gettag=function(tag,result){
+    connection.query("Select * from blog where tags like ?",tag,(err,res)=>{
+        if(err)
+            result(err,null);
+        else
+            result(null,res);    
+    });
+}
 
-module.exports = {user , post};
+user.store_image=function(username,address,result){
+    connection.query("Update user SET image=? where username=?",[address,username],(err,res)=>{
+        if(err)
+            result(err,null);
+        else
+            result(null,res);    
+    })
+}
+
+user.getimage=function(username,result){
+    connection.query("SELECT image from user where username=?",username,(err,res)=>{
+        if(err)
+            result(err,null);
+        else
+            result(null,res);    
+    })
+}
+
+user.like=function(id,username,result){
+    
+    connection.query("Update blog SET Likes=Likes+1 where id=?",id,(err,res)=>{
+        if(err)
+            result(err,null);
+        else
+        {
+            console.log("Hello")
+            connection.query("SELECT * from likedpost where id=?",id,(err,res)=>{
+
+                if(err)
+                    result(err,NULL);
+                else
+                {    
+                    if(res.length===0)
+                    {
+                        console.log('No data');
+
+                        connection.query("Insert into likedpost(id,user) VALUES (?,?)",[id,username],(err,res)=>{
+                            if(err)
+                            {
+                                console.log('Error occured',err);    
+                                result(err,null);
+                            }    
+                        })
+                    }   
+                    else{    
+                    connection.query("Update likedpost SET user=CONCAT(user,?) where id=?",[username,id],(err,res)=>{
+                        if(err)
+                            result(err,null);
+                        else    
+                            result(null,res);
+                    })
+                    }
+                }               
+            })
+        }
+    })
+}    
+
+user.has_liked=function(username,id,result){
+    console.log(username)
+    connection.query("SELECT * from likedpost where id=? and user like ?",[id,username],(err,res)=>{
+        if(err)
+        {
+            result(err,null);
+        }
+        else
+        {
+            result(null,res);
+        }
+    })
+}
+
+module.exports={user,post};
