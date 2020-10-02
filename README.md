@@ -1,14 +1,21 @@
-# how-you-did.com
 
-Go to the Client Directory execute:
-  npm install
-Then Go to the Server Directory execute:
-  npm install
-  
-Database:blog
-Tables:\
-1.user  => Create Table user(username varchar(100) Primary key,email varchar(100),password varchar(100),image varchar(500)
-2.blog => Create Table blog(id int Primary key,title varchar(100),tags varchar(100),body varchar(3000),author varchar(100),date date,Likes int)
-3.likedpost => Create Table likedpost(id int Primary key,user varchar(5000)
+#Tasks:\\
+1.Add Image in Create post ->Not Working\\
+2.All three icons below Create Post(Image,Github and attachments) not working\\
+3.Password Encryption\\
+4.Trending Post\\
 
-Tables will be Created automatically if do not exist
+
+#Steps:\\
+
+1.Copy Server code.\\
+2.In server code,change databse connection parameter in connection.js file\\
+3.Now in same Server Code directory run:\\
+	npm install\\
+4.For starting server run:\\ 
+	npm run dev\\
+5.Now Copy Client Code;\\
+6.In CLient COde directory run :\\
+	npm install\\
+7.Run for starting Client Server:\\
+	npm start\\

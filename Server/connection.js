@@ -1,6 +1,8 @@
 const mysql=require('mysql')
 
 var connection = mysql.createConnection({
+    
+    //Change these Parameter according to yours
     host: "localhost",
     user: "root",
     password: "ABCabc123@",
@@ -16,11 +18,11 @@ connection.connect((err)=>{
   });
 
 connection.query("SELECT * from user",(err,res)=>{
-    if(res.length===0)
+    if(!res)
     {
-        connection.query("Create Table user(username varchar(100) Primary key,email varchar(100),password varchar(100),image varchar(500)",(err,res)=>{
+        connection.query("Create Table user(username varchar(100) Primary key,email varchar(100),password varchar(100),image varchar(500))",(err,res)=>{
           if(err)
-            console.log('Table not Created');
+            console.log('Table not Created',err);
           else
             console.log('Table Created Successfully');  
         })
@@ -31,11 +33,11 @@ connection.query("SELECT * from user",(err,res)=>{
 })
 
 connection.query("SELECT * from blog",(err,res)=>{
-  if(res.length===0)
+  if(!res)
   {
       connection.query("Create Table blog(id int Primary key,title varchar(100),tags varchar(100),body varchar(3000),author varchar(100),date date,Likes int)",(err,res)=>{
         if(err)
-          console.log('Table not Created');
+          console.log('Table not Created',err);
         else
           console.log(' Table Created Successfully');  
       })
@@ -51,11 +53,11 @@ connection.query("SELECT * from blog",(err,res)=>{
 })
 
 connection.query("SELECT * from likedpost",(err,res)=>{
-  if(res.length===0)
+  if(!res)
   {
-      connection.query("Create Table likedpost(id int Primary key,user varchar(5000)",(err,res)=>{
+      connection.query("Create Table likedpost(id int Primary key,user varchar(5000))",(err,res)=>{
         if(err)
-          console.log('Table not Created');
+          console.log('Table not Created',err);
         else
           console.log(' Table Created Successfully');  
       })

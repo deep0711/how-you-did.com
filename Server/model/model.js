@@ -8,13 +8,12 @@ var user=function(user){
 };
 
 var post = function(post) {
-    this.id=post.id;
-    this.author = post.author;
+    this.author = post.username;
     this.tags = post.tags;
     this.title = post.title;
     this.body = post.body;
-    this.date=post.date;
-    this.Likes=post.Likes;
+    this.date=new Date();
+    this.Likes=0;
 }
 
 user.create=function(new_user,result){
@@ -28,6 +27,7 @@ user.create=function(new_user,result){
 };
 
 post.insert = function(new_post , result) {
+    console.log("In backend",new_post);
     connection.query("INSERT INTO blog set ?" , new_post , (err , res) => {
         if(err) 
             result(err , null);

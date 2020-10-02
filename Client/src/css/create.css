@@ -38,11 +38,18 @@
     margin: 0 2px 0 2px;
     cursor: pointer;
 }
-textarea {
+.textarea {
     border-radius: 20px;
     padding: 5px;
     resize: none;
 }
-textarea:focus {
+.textarea:focus {
     outline: none;
+}
+.editor {
+    display: flex;
+    height: 100%;
+}
+.ck-editor__editable {
+    min-height: 250px;
 }
