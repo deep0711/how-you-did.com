@@ -3,6 +3,8 @@ import '../css/Navbar.css'
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
+import PostList from './PostList';
+
 
 class Profile extends React.Component {
 
@@ -43,30 +45,13 @@ class Profile extends React.Component {
         const {posts} = this.state;
 
         const postList = posts.length ? (
-            posts.map(data => {
-                return( 
-                    <div className="row">
-                        <Link to={'/post/'+data.id} style={{textDecoration:"none",color:"black"}}>
-                            <div className="col s12">
-                                <div className="card" style={{width: "50rem",height:"10rem",border:"2px solid grey"}}>
-                                    <div className="card-body">
-                                        <div className="card-title">
-                                            {data.title}
-                                            <br></br>
-                                            <h6>{data.tags}</h6>
-                                        </div>
-                                        <p className="card-text" style={{textDecoration:"none",color:"grey"}}>
-                                            {data.author}<br></br>
-                                            {data.date}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
-                )
-            })
-        ):(<div className = "container">No Liked Posts</div>)
+            <PostList
+            posts={ posts } />) :
+        (<div 
+        className="container">
+            No Liked Posts
+        </div>);
+
         return (
             
             <div style = {{maxWidth : "1000px" , margin : "0px auto"}}> 
@@ -98,7 +83,7 @@ class Profile extends React.Component {
                 <div className = "gallery">
                     <p style={{paddingLeft:"10px"}}>Liked Post</p><br></br>
                     
-                    <div className=" container">
+                    <div className="container d-flex flex-column align-items-center">
                         {postList}
                     </div>
                 </div>
