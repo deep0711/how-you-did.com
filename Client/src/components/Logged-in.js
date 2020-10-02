@@ -1,6 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+
+import PostList from './PostList';
+import TopPostList from './TopPostList';
+import AllTags from './AllTags';
+
 import '../css/style.css';
 
 class Home extends React.Component{
@@ -30,71 +35,28 @@ class Home extends React.Component{
         data.date=ans;
     })
 
-    const toppostlist=this.state.topposts.map(data=>{
-        return(
-                <Link to={'/post/'+data.id} style={{fontFamily:"cursive",textDecoration:"none",color:"black"}}>
-                    <div className="col s12">
-                    <div className="card" style={{width: "18rem",height:"10rem"}}>
-                        <div className="card-body">
-                            <div className="card-title">
-                                {data.title}
-                                <br></br>
-                                <h6>{data.tags}</h6>
-                            </div>
-                            <p className="card-text" style={{textDecoration:"none",color:"black"}}>
-                                
-                                {data.author}<br></br>
-                                {data.date}
-                            </p>
-                        </div>
-                    </div>
-                    </div>
-                </Link>
-            )
-    })
-
-    const postlist=this.state.posts.map(data=>{
-        return(
-            <div className="row">
-                <Link to={'/post/'+data.id} style={{fontFamily:"cursive",textDecoration:"none",color:"black"}}>
-                    <div className="col s12">
-                    <div className="card" style={{width: "50rem",height:"10rem",border:"2px solid grey"}}>
-                        <div className="card-body">
-                            <div className="card-title">
-                                {data.title}
-                                <br></br>
-                                <h6>{data.tags}</h6>
-                            </div>
-                            <p className="card-text" style={{textDecoration:"none",color:"black"}}>
-                                {data.author}<br></br>
-                                {data.date}
-                            </p>
-                        </div>
-                    </div>
-                    </div>
-            </Link>
-            </div>    
-        )
-    })
     return(
         <div className="Home">
             
             <div className="homeTags d-flex justify-content-center flex-wrap p-3">
                     {
-                        this.state.tagsX.map(tag => <Link to={'/tags/'+tag.substring(1,tag.length)}><button className="btn btn-outline-secondary m-2" style={{fontFamily:"cursive",color:"black",border:"2px solid black"}}>{ tag }</button></Link>)
+                        <AllTags
+                        tags={ this.state.tagsX} />
                     }               
             </div>
             <hr></hr>
             <center><p>Top Picks for you</p></center>
             <React.Fragment>
             <div className="deepak d-flex justify-content-center align-items-center">
-                {toppostlist}
+                <TopPostList
+                topposts={this.state.topposts} />
             </div>
             </React.Fragment>
             <hr></hr>
             <p style={{paddingLeft:"73px"}}>Worth Reading</p>        
-            <div className=" container">
-                {postlist}
+            <div className="container d-flex flex-column align-items-center">
+                <PostList 
+                posts={ this.state.posts } />
             </div>
         </div>
     )

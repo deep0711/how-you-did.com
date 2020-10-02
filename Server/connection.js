@@ -5,7 +5,7 @@ var connection = mysql.createConnection({
     //Change these Parameter according to yours
     host: "localhost",
     user: "root",
-    password: "ABCabc123@",
+    password: "raimysql",
     database: "BLOG",
     insecureAuth : true
   });

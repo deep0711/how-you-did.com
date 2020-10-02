@@ -11,6 +11,7 @@ import Post from './components/post';
 import Tag from './components/tag';
 import EditProfile from './components/EditProfile';
 import CreatePost from './components/Create';
+import Loading from './components/Loading';
 
 class App extends React.Component{
     
@@ -77,8 +78,8 @@ class App extends React.Component{
         {
             return(
                 <BrowserRouter>
-                <div>
-                    <h3>Loading....</h3>
+                <div className="d-flex justify-content-center align-items-center">
+                    <Loading />
                 </div>
                 </BrowserRouter>
             )
