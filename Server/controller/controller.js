@@ -5,8 +5,6 @@ const jwt = require('jsonwebtoken');
 const user=mod.user;
 const post=mod.post;
 
-
-
 exports.create=function(req,res){
     
     const new_user=new user(req.body);
@@ -14,6 +12,7 @@ exports.create=function(req,res){
     user.create(new_user,(err,user)=>{
         if(err)
         {    
+            console.log(err);
             res.send(err);
             
         }   
@@ -27,9 +26,12 @@ exports.create=function(req,res){
 exports.insert = function(req , res) {
     const new_post = new post(req.body);
     post.insert(new_post , (err , post) => {
-        if(err) res.send(err);
-        else{ 
-            console.log("DOne");
+        if(err){console.log(err); 
+            res.send(err);
+
+        }
+            else{ 
+            //console.log("DOne");
             res.json(post);
         }    
 
@@ -40,8 +42,9 @@ exports.insert = function(req , res) {
 exports.search=function(req,res){
     
     user.search(req.body.username,(err,user)=>{
-        if(err)
-            res.send(err);
+        if(err){
+            console.log(err);
+            res.send(err);}
         else
             res.json(user);
     });
@@ -61,8 +64,9 @@ exports.showall=function(req,res){
 exports.delete=function(req,res){
     
     user.delete(req.body.username,(err,user)=>{
-        if(err)
-            res.send(err);
+        if(err){
+            console.log(err);
+            res.send(err);}
         else
             res.json(user);
     });
@@ -71,18 +75,20 @@ exports.delete=function(req,res){
 exports.update=function(req,res){
 
     user.update(req.body.prev_username,req.body.username,req.body.password,(err,user)=>{
-        if(err)
-            res.send(err);
+        if(err){
+            console.log(err);
+            res.send(err);}
         else
             res.send('Updated Successfully');
     });
 };
 
 exports.login=function(req,res){
-
+    console.log("Hi,Login");
     user.login(req.body.username,req.body.password,(err,user)=>{
-        if(err)
-            res.send(err);
+        if(err){
+            console.log(err);
+            res.send(err);}
         else
         {    
             if(user.length==1)
@@ -97,13 +103,13 @@ exports.gettoken=function(req,res){
     
     user.login(req.body.username,req.body.password,(err,user)=>{
         
-        if(err)
-            res.send(null);
+        if(err){console.log(err);
+            res.send(null);}
         else
         {
             if(user.length===1)
             {
-                console.log(user[0]);
+                //console.log(user[0]);
                 const payload={
                     id:user[0].username,
                     email:user[0].email
@@ -140,8 +146,9 @@ exports.getuser=function(req,res){
 exports.gettag=function(req,res){
     
     user.gettag(req.body.tag,(err,post)=>{
-        if(err)
-            res.send(err);
+        if(err){
+            console.log(err);
+            res.send(err);}
         else
             res.json(post);    
     })
@@ -153,14 +160,14 @@ exports.image=function(req,res){
 
     var file=req.files.file;
     var filename=req.files.file.name;
-    var address='C:\\Users\\deepa\\Documents\\React\\how-you-did.com\\src\\image\\'+req.body.username+filename;
-    
-    console.log(address);
+    //var address='C:\\Users\\deepa\\Documents\\React\\how-you-did.com\\src\\image\\'+req.body.username+filename;
+    var address="../build/static/media/"+req.body.username+filename;
+    //console.log(address);
     if(file.mimetype=='image/jpeg' || file.mimetype=='image/png' || file.mimetype=='image/gif'){
         file.mv(address,err=>{
             if(err)
             {
-                console.log("Error Occured");
+                console.log(err);
                 res.status(500).send(err);
             }
             else
@@ -168,6 +175,7 @@ exports.image=function(req,res){
                 user.store_image(req.body.username,filename,(err,user)=>{
                     if(err)
                     {
+                        console.log(err);
                         res.status(500).send(err);
                     }
                     else
@@ -182,8 +190,8 @@ exports.image=function(req,res){
 
 exports.getimage=function(req,res){
     user.getimage(req.body.username,(err,path)=>{
-        if(err)
-            res.status(500).send(err);
+        if(err){console.log(err);
+            res.status(500).send(err);}
         else
             res.send(path);    
     })
@@ -192,9 +200,9 @@ exports.getimage=function(req,res){
 exports.like=function(req,res){
     
     user.like(req.body.id,req.body.username,(err,post)=>{
-        console.log(post);
-        if(err)
-            res.status(500).send(err);
+        //console.log(post);
+        if(err){console.log(err);
+            res.status(500).send(err);}
         else
             res.send('Liked');    
     })
@@ -202,8 +210,8 @@ exports.like=function(req,res){
 
 exports.has_liked=function(req,res){
     user.has_liked(req.body.username,req.body.id,(err,post)=>{
-        if(err)
-            res.status(500).send(err);
+        if(err){console.log(err);
+            res.status(500).send(err);}
         else
         {
             if(post.length===0)

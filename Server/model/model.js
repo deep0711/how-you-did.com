@@ -27,12 +27,12 @@ user.create=function(new_user,result){
 };
 
 post.insert = function(new_post , result) {
-    console.log("In backend",new_post);
+    //console.log("In backend",new_post);
     connection.query("INSERT INTO blog set ?" , new_post , (err , res) => {
         if(err) 
             result(err , null);
         else 
-        {   console.log("Data Inserted !!"); 
+        {   //console.log("Data Inserted !!"); 
             result(null , res.insertId);
         }    
     })
@@ -92,7 +92,8 @@ user.update=function(prev_username,username,password,result){
 user.login=function(username,password,result){
     connection.query("Select * from user where username=? and password=?",[username,password],(err,res)=>{
         if(err)
-            result(err,NULL);
+        {   console.log(err) 
+            result(err,NULL);}
         else
             result(null,res);
     });
@@ -132,7 +133,7 @@ user.like=function(id,username,result){
             result(err,null);
         else
         {
-            console.log("Hello")
+            //console.log("Hello")
             connection.query("SELECT * from likedpost where id=?",id,(err,res)=>{
 
                 if(err)
@@ -141,7 +142,7 @@ user.like=function(id,username,result){
                 {    
                     if(res.length===0)
                     {
-                        console.log('No data');
+                        //console.log('No data');
 
                         connection.query("Insert into likedpost(id,user) VALUES (?,?)",[id,username],(err,res)=>{
                             if(err)
@@ -166,7 +167,7 @@ user.like=function(id,username,result){
 }    
 
 user.has_liked=function(username,id,result){
-    console.log(username)
+    ///console.log(username)
     connection.query("SELECT * from likedpost where id=? and user like ?",[id,username],(err,res)=>{
         if(err)
         {

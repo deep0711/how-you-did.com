@@ -18,7 +18,7 @@ class Login extends React.Component{
                 password:e.target.password.value
             }
             
-            const url='http://localhost:8000/post/gettoken'
+            const url='post/gettoken'
             axios.post(url,data)
             .then(res=>{
                 if(res.data)

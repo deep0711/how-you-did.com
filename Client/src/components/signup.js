@@ -6,7 +6,7 @@ const Signup=(props)=>{
 
     const handlesubmit=(e)=>{
         e.preventDefault();
-        const url='http://localhost:8000/post';
+        const url='post';
         
         const data={
             username:e.target.username.value,

@@ -1,9 +1,11 @@
+This is our SL-3 Project.
+"HOW-YOU-DID"
+A edu-blog Site.
 
-#Tasks:\\
-1.Add Image in Create post ->Not Working\\
-2.All three icons below Create Post(Image,Github and attachments) not working\\
-3.Password Encryption\\
-4.Trending Post\\
+Team Members:
+1.Ajay Bohra (4304) TE IT ,
+2.Kunal Khanra (4329) TE IT ,
+3.Deepak Tiwari (4362) TE IT
 
 
 #Steps:\\

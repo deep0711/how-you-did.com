@@ -3,7 +3,7 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import * as BiIcons from 'react-icons/bi';
 import { FaLessThanEqual } from 'react-icons/fa';
-
+import '../css/post.css';
 
 class Post extends React.Component{
     state={
@@ -23,7 +23,7 @@ class Post extends React.Component{
             username:id
         }
 
-        var url='http://localhost:8000/post/search/';
+        var url='post/search/';
         
         axios.post(url,data)
             .then(res=>{
@@ -50,7 +50,7 @@ class Post extends React.Component{
                 username:'%'+this.props.state.username+'%'
             }
             
-            const url='http://localhost:8000/post/hasliked'
+            const url='post/hasliked'
             
             axios.post(url,data)
                 .then(res=>{
@@ -63,7 +63,7 @@ class Post extends React.Component{
                             likes:likes+1
                         })
                         
-                        const url='http://localhost:8000/post/like'
+                        const url='post/like'
                         
                         const data={
                             id:this.state.id,
@@ -97,7 +97,7 @@ class Post extends React.Component{
                     {this.state.likes}
                 </Link>
                 <br></br>
-                <h3>{this.state.body}</h3>
+                <div dangerouslySetInnerHTML={{__html:this.state.body}}></div>
                 <br></br>
                 <h6>Author<br></br>{this.state.author}</h6>
             </div>

@@ -5,6 +5,7 @@ import axios from 'axios';
 import PostList from './PostList';
 import TopPostList from './TopPostList';
 import AllTags from './AllTags';
+import Footer from './footer';
 
 import '../css/style.css';
 
@@ -17,7 +18,7 @@ class Home extends React.Component{
     }
     
     componentDidMount(){
-        const url='http://localhost:8000/post';
+        const url='post';
         axios.get(url)
             .then(res=>{
                 this.setState({
@@ -53,11 +54,12 @@ class Home extends React.Component{
             </div>
             </React.Fragment>
             <hr></hr>
-            <p style={{paddingLeft:"73px"}}>Worth Reading</p>        
+            <center><p >Worth Reading</p></center>        
             <div className="container d-flex flex-column align-items-center">
                 <PostList 
                 posts={ this.state.posts } />
             </div>
+            <Footer/>
         </div>
     )
     }

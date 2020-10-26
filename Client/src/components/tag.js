@@ -15,7 +15,7 @@ class Tag extends React.Component{
         const data={
             tag:'%#'+this.props.match.params.tag_id+'%'
         }
-        const url='http://localhost:8000/post/tag';
+        const url='post/tag';
 
         axios.post(url,data)
             .then(res=>{
@@ -30,7 +30,7 @@ class Tag extends React.Component{
         const data={
             tag:'%#'+this.props.match.params.tag_id+'%'
         }
-        const url='http://localhost:8000/post/tag';
+        const url='post/tag';
 
         axios.post(url,data)
             .then(res=>{

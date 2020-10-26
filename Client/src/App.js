@@ -12,6 +12,7 @@ import Tag from './components/tag';
 import EditProfile from './components/EditProfile';
 import CreatePost from './components/Create';
 import Loading from './components/Loading';
+import Footer from './components/footer';
 
 class App extends React.Component{
     
@@ -53,7 +54,7 @@ class App extends React.Component{
         }
         else
         {
-            const url='http://localhost:8000/post/getuser';
+            const url='post/getuser';
 
             axios.get(url,{ headers: {authorization: 'Bearer '+ token}})
                 .then(res=>{
@@ -81,7 +82,9 @@ class App extends React.Component{
                 <div className="d-flex justify-content-center align-items-center">
                     <Loading />
                 </div>
+                    <Footer/>
                 </BrowserRouter>
+                
             )
         }
         else if(this.state.status==="Not_Logged_In")
@@ -95,6 +98,15 @@ class App extends React.Component{
                         <Route path='/create' component={ Signup}/>
                         
                     </div>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    
+                    <Footer/>
                 </BrowserRouter>
             )
         }
@@ -111,6 +123,7 @@ class App extends React.Component{
                         <Route path='/editprofile' render={ (props)=>< EditProfile {...props} state={this.state} logout={this.logout} />}/>
                         <Route path='/write' render={ (props)=>< CreatePost {...props} state={this.state}/> }/>
                     </div>
+                
                 </BrowserRouter>
             )
         }

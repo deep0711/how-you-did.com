@@ -7,6 +7,7 @@ import * as GrIcons from 'react-icons/gr'
 import axios from 'axios';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import Footer from './footer';
 
 class createPost extends React.Component {
     
@@ -24,6 +25,7 @@ class createPost extends React.Component {
     }
     handleSubmit = (e) => {
         e.preventDefault(); 
+        console.log(this.state.body);
         let words = this.state.body.split(" ");
         let tag = '';
         words.map(word => {
@@ -36,7 +38,7 @@ class createPost extends React.Component {
             username : this.state.username ,
         }
         console.log(data);
-        axios.post('http://localhost:8000/post/create' , data).then(res => {
+        axios.post('post/create' , data).then(res => {
             console.log(res);
             this.props.history.push('/');
         }).catch(e => {
@@ -92,7 +94,9 @@ class createPost extends React.Component {
                     </div>
                     <button className = "waves-effect waves-light btn" style = {{float : "right"}} type = "submit" ><FaIcons.FaLocationArrow style = {{color : "blue"}}/></button>
                 </form>
-                </div>               
+                
+                </div>
+                               
             </>
         )
     }

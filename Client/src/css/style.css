@@ -3,7 +3,30 @@ div.deepak {
     overflow: auto;
     white-space: nowrap;
   }
+  /*
+  div.card{
+    background-color: aquamarine;
+  }
+*/
+
+div.deep{
+  background-color: orange !important;
+}
+body{
+  background-image: url('../image/bg.png');
+  background-repeat: repeat-y;
   
+  -webkit-background-size: 100% 100%;
+
+  -moz-background-size: 100% 100%;
+
+  -o-background-size: 100% 100%;
+  
+  background-size: 100%;
+
+  
+}
+
   div.deepak {
     display: inline-block;
     color: white;
@@ -12,6 +35,11 @@ div.deepak {
     text-decoration: none;
   }
   
+button.btn:hover{
+  background-color: aqua;
+  color:#042fb0 !important;
+}  
+
 div.deepak::-webkit-scrollbar { 
     display: none;  
  }
@@ -26,6 +54,9 @@ div.Image_wrap:hover div.upload{
   
 }
 
+a {
+  color:aqua !important;
+}
 
 div.upload {
   visibility: hidden;

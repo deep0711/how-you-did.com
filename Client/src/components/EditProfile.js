@@ -16,7 +16,7 @@ const EditProfile =(props)=>{
         formData.append('file',e.target.profile.files[0]);
         formData.append('filename',e.target.profile.files[0].name);
         formData.append('username',props.state.username);
-        const url='http://localhost:8000/post/editimage'
+        const url='post/editimage'
         
         
         axios.post(url,formData,{
@@ -37,7 +37,7 @@ const EditProfile =(props)=>{
     
     const handle=(e)=>{
         e.preventDefault();
-        const url='http://localhost:8000/post/update';
+        const url='post/update';
         var data={};
 
         if(e.target.password)
@@ -72,7 +72,7 @@ const EditProfile =(props)=>{
         <div className="d-block justify-content-center align-items-center" style={{marginLeft:"41%",marginTop:"20px"}}>
             <div className="Image_wrap" style={{ width:"180px",height:"210px"}}>
                 
-                <img style={{marginBottom:"50px"}} className = "deepimage profile-img center" src ={require('../image/transition.jpg')} alt="Profile Image"/>
+                <img style={{marginBottom:"50px"}} className = "deepimage profile-img center" src ={require('../image/pp.png')} alt="Profile Image"/>
                 <div className="upload" style={ {marginTop:"-200px",marginLeft:"75px"} }>
                 
                 <form onSubmit={handlesubmit}>

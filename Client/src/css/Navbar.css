@@ -21,6 +21,7 @@
   }
 
   .nav-menu {
+    color: aqua !important;
     z-index:1;
     background-color: #060b26;
     width: 250px;
@@ -94,8 +95,13 @@
   .nav-menu-items {
     width: 100%;
   }
+
+  .side-data{
+    color: aqua;
+  }
   
   .navbar-toggle {
+    color: aqua !important;
     background-color: #060b26;
     width: 100%;
     height: 80px;

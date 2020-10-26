@@ -16,7 +16,7 @@ class Profile extends React.Component {
     }    
     
     componentDidMount() {
-        axios.get('http://localhost:8000/post').then(res => {
+        axios.get('post').then(res => {
 
             this.setState({
                 posts : res.data.slice(0 , 3)
@@ -26,7 +26,7 @@ class Profile extends React.Component {
             username:this.props.state.username
         }
 
-        axios.post('http://localhost:8000/post/getimage',data)
+        axios.post('post/getimage',data)
             .then(res=>{
                 this.setState({
                     profileimage:res.data[0].image
@@ -63,10 +63,7 @@ class Profile extends React.Component {
                     borderBottom : "1px solid grey"
                 }}>
                     <div>
-                        {
-                            this.state.profileimage!=null &&  
-                            <img className = "profile-img center" src ={require('../image/'+this.state.username+this.state.profileimage)} alt={"Profile Image"}/>
-                        }
+                        <img className = "profile-img center" src ={require('../image/pp.png')} alt={"Profile Image"}/>
                     </div>
                     
                     <div style = {{marginLeft:"-300px"}}> 
